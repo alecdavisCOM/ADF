@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donate | Alec Davis Foundation</title>
+  <meta name="description" content="Make a one-time or monthly gift to the Alec Davis Foundation's $1 billion permanent endowment. Your gift is never spent; it keeps giving every year, forever." />
+  <meta name="theme-color" content="#2f6bff" />
+  <meta property="og:title" content="Donate | Alec Davis Foundation" />
+  <meta property="og:description" content="A gift that is never spent. Help build a $1 billion endowment that gives every year, forever." />
+  <meta property="og:image" content="assets/og-mark.jpg" />
+  <link rel="icon" href="assets/favicon/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="assets/favicon/site.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="donate">
+<main id="main">
+
+  <!-- ============ DONATE HERO ============ -->
+  <section class="hero donate-hero">
+    <div class="container donate-grid">
+      <div>
+        <span class="pill load" style="--d:.05s"><span class="pulse"></span>Building the $1 billion endowment</span>
+        <h1 class="split-words" data-delay=".15">Give once. <span class="grad-text">Keep giving forever.</span></h1>
+        <p class="lead load" style="--d:.6s">Your gift becomes part of a permanent endowment. The principal is never spent, so every dollar you give today keeps producing new support for American communities, year after year, for generations.</p>
+        <ul class="check-list load" style="--d:.75s">
+          <li><span class="ck"><i data-i="lock"></i></span><span><strong>100% restricted</strong> to building the permanent endowment.</span></li>
+          <li><span class="ck"><i data-i="trend"></i></span><span><strong>Fully invested</strong> during the campaign. No program spending.</span></li>
+          <li><span class="ck"><i data-i="shield"></i></span><span><strong>Tax-deductible</strong> to the extent allowed by law.</span></li>
+        </ul>
+        <div class="donate-photo load" style="--d:.9s">
+          <img src="images/hero-give.jpg" alt="Hands holding coins and a note that reads make a change" />
+        </div>
+      </div>
+
+      <div class="widget load" style="--d:.3s" aria-label="Choose your gift">
+        <div class="widget-head">
+          <h2>Choose your gift</h2>
+          <div class="freq" role="group" aria-label="Gift frequency">
+            <button type="button" class="active" data-freq="once" aria-pressed="true">One-time</button>
+            <button type="button" data-freq="monthly" aria-pressed="false">Monthly</button>
+          </div>
+        </div>
+        <div class="amounts" id="amounts">
+          <button type="button" class="amount" data-amount="50">$50</button>
+          <button type="button" class="amount" data-amount="100">$100</button>
+          <button type="button" class="amount active" data-amount="250">$250</button>
+          <button type="button" class="amount" data-amount="500">$500</button>
+          <button type="button" class="amount" data-amount="1000">$1,000</button>
+          <button type="button" class="amount" data-amount="5000">$5,000</button>
+        </div>
+        <label class="calc-label" for="customAmount">Or choose an amount <output id="customOut">$250</output></label>
+        <input type="range" id="customAmount" min="25" max="10000" step="25" value="250" />
+
+        <div class="impact">
+          <div class="impact-row"><small id="impTotalLabel">Added to the permanent endowment</small><div class="val" id="impTotal">$0</div></div>
+          <div class="impact-grid">
+            <div><small>Could give every year</small><div class="val sm" id="impYear">$0</div></div>
+            <div><small>Given over 100 years</small><div class="val sm" id="imp100">$0</div></div>
+          </div>
+          <p class="calc-note"><i data-i="lock"></i> And your original gift is still there, ready for the next century. Illustrative, at a 5% annual payout.</p>
+        </div>
+
+        <a id="giveBtn" href="#" class="btn btn-primary btn-lg btn-block"><i data-i="heart"></i><span id="giveLabel">Give $250</span><i data-i="arrow" data-c="arrow"></i></a>
+        <p class="widget-note">Gifts are received by our 501(c)(3) fiscal sponsor for the endowment campaign and are tax-deductible to the extent allowed by law. <a href="about.html#sponsor">Learn more</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHERE IT GOES ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow reveal">Where your gift goes</span>
+        <h2 class="reveal" style="--d:.08s">A gift that is <span class="grad-text">never used up</span></h2>
+        <p class="reveal" style="--d:.16s">Most donations are spent once. Yours will be protected, invested and put to work for good, every year, forever.</p>
+      </div>
+      <div class="cards">
+        <div class="card reveal" style="--d:0s"><div class="icon"><i data-i="lock"></i></div><h3>1. Restricted</h3><p>Your contribution is held as restricted capital, dedicated solely to building and launching the Alec Davis Foundation endowment.</p></div>
+        <div class="card reveal" style="--d:.1s"><div class="icon"><i data-i="trend"></i></div><h3>2. Invested</h3><p>It stays invested throughout the campaign and becomes part of the $1 billion principal, which is never spent.</p></div>
+        <div class="card reveal" style="--d:.2s"><div class="icon"><i data-i="infinity"></i></div><h3>3. Giving forever</h3><p>Once the foundation launches, the returns on your gift fund programs across 13 pillars of impact, every year.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUOTE ============ -->
+  <section class="section flush-top">
+    <div class="container">
+      <div class="quote-band reveal zoom">
+        <img src="images/band-yosemite.jpg" alt="" data-parallax=".12" loading="lazy" />
+        <blockquote>
+          <p>&ldquo;The best time to plant a tree was twenty years ago. The second best time is now.&rdquo;</p>
+          <cite>A proverb that captures the spirit of every gift to a permanent endowment.</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OTHER WAYS ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow reveal">Other ways to give</span>
+        <h2 class="reveal" style="--d:.08s">More ways to <span class="grad-text">build the endowment</span></h2>
+      </div>
+      <div class="res-grid">
+        <a class="res reveal" style="--d:0s" href="get-involved.html#legacy"><div class="top"><span class="icon"><i data-i="infinity"></i></span><span class="kind">Legacy</span></div><h3>Leave a gift in your will</h3><p>Name the foundation in your estate plans. Charitable bequests are generally free of federal estate tax.</p><span class="text-link">Plan a legacy gift<i data-i="arrow"></i></span></a>
+        <a class="res reveal" style="--d:.08s" href="get-involved.html#assets"><div class="top"><span class="icon"><i data-i="trend"></i></span><span class="kind">Tax-efficient</span></div><h3>Give stock or a DAF grant</h3><p>Appreciated securities and donor-advised fund grants can stretch your generosity further.</p><span class="text-link">Learn how<i data-i="arrow"></i></span></a>
+        <a class="res reveal" style="--d:.16s" href="get-involved.html#corporate"><div class="top"><span class="icon"><i data-i="briefcase"></i></span><span class="kind">Business</span></div><h3>Corporate sponsorship</h3><p>Partner your company with a mission built to outlast every business cycle.</p><span class="text-link">Become a sponsor<i data-i="arrow"></i></span></a>
+        <a class="res reveal" style="--d:0s" href="get-involved.html#matching"><div class="top"><span class="icon"><i data-i="repeat"></i></span><span class="kind">Multiply</span></div><h3>Employer matching</h3><p>Ask your employer to match your gift and double what you add to the endowment.</p><span class="text-link">Learn about matching<i data-i="arrow"></i></span></a>
+        <a class="res reveal" style="--d:.08s" data-mail="Check or wire transfer gift" href="#"><div class="top"><span class="icon"><i data-i="mail"></i></span><span class="kind">By request</span></div><h3>Check or wire transfer</h3><p>Prefer to give by check or wire? Email us and we will send complete instructions.</p><span class="text-link">Request instructions<i data-i="arrow"></i></span></a>
+        <a class="res reveal" style="--d:.16s" data-mail="Major gift conversation" href="#"><div class="top"><span class="icon"><i data-i="star"></i></span><span class="kind">Major gifts</span></div><h3>Founding-level gifts</h3><p>Considering a transformational gift? Let's talk personally about your goals and recognition.</p><span class="text-link">Contact Alec<i data-i="arrow"></i></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section alt-band">
+    <div class="container narrow">
+      <div class="section-head center">
+        <span class="eyebrow reveal">Before you give</span>
+        <h2 class="reveal" style="--d:.08s">Common questions</h2>
+      </div>
+      <div class="faq reveal">
+        <details open>
+          <summary>Will my gift be spent?<span class="pm"></span></summary>
+          <div class="ans"><p>No. Your gift becomes part of the endowment's permanent principal. Only the investment returns the endowment generates will ever be given away, so your original gift keeps working indefinitely.</p></div>
+        </details>
+        <details>
+          <summary>Is my donation tax-deductible?<span class="pm"></span></summary>
+          <div class="ans"><p>Yes. Gifts are received by a registered 501(c)(3) public charity serving as our fiscal sponsor, and are tax-deductible to the extent allowed by law. You will receive an acknowledgment for your records.</p></div>
+        </details>
+        <details>
+          <summary>What happens to my gift during the campaign?<span class="pm"></span></summary>
+          <div class="ans"><p>It is held as a restricted capital reserve asset, dedicated solely to launching the Alec Davis Foundation, and remains invested. No program distributions are required during this phase.</p></div>
+        </details>
+        <details>
+          <summary>Can I change or cancel a monthly gift?<span class="pm"></span></summary>
+          <div class="ans"><p>Of course. Monthly gifts can be changed, paused or cancelled at any time. Just contact us.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta reveal zoom">
+        <span class="ring r1" aria-hidden="true"></span><span class="ring r2" aria-hidden="true"></span><span class="ring r3" aria-hidden="true"></span>
+        <div class="cta-inner">
+          <span class="eyebrow">Thinking long term?</span>
+          <h2>Make your legacy part of forever.</h2>
+          <p>A gift from your estate, even a small percentage, can become a permanent source of support for generations to come.</p>
+          <div class="hero-actions">
+            <a href="get-involved.html#legacy" class="btn btn-white btn-lg"><i data-i="infinity"></i>Explore legacy giving</a>
+            <a data-mail="Question about giving" href="#" class="btn btn-outline-white btn-lg">Ask a question</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<script src="js/main.js"></script>
+</body>
+</html>
