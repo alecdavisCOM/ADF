@@ -1,1 +1,985 @@
-hi
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alec Davis Foundation — Coming Soon</title>
+  <meta name="description" content="The Alec Davis Foundation is a private foundation in the making, coming to alecdavis.org. Founding partners and philanthropists are invited to help make it real." />
+  <meta name="theme-color" content="#2f6bff" />
+
+  <meta property="og:title" content="Alec Davis Foundation — Coming Soon" />
+  <meta property="og:description" content="A private foundation in the making. Looking for founding partners to help bring it to life." />
+  <meta property="og:image" content="assets/og-mark.jpg" />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" type="image/png" href="assets/logo-mark.png" />
+  <link rel="apple-touch-icon" href="assets/logo-mark.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy: #0f1f4d;
+      --navy-soft: #3a4a75;
+      --royal: #2f4fd8;
+      --blue: #2f6bff;
+      --sky: #1fb8f5;
+      --cyan: #13d6f7;
+      --ink: #1b2547;
+      --muted: #5b6788;
+      --bg: #f7faff;
+      --surface: #ffffff;
+      --line: #e3eafa;
+      --tint: #eef4ff;
+      --grad: linear-gradient(120deg, var(--royal) 0%, var(--blue) 45%, var(--cyan) 100%);
+      --shadow-sm: 0 2px 8px rgba(31, 63, 160, 0.06);
+      --shadow-md: 0 12px 40px -12px rgba(31, 63, 160, 0.22);
+      --shadow-lg: 0 30px 80px -24px rgba(31, 63, 160, 0.32);
+      --radius: 22px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "DM Sans", system-ui, -apple-system, Segoe UI, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.65;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    h1, h2, h3 {
+      font-family: "Montserrat", sans-serif;
+      color: var(--navy);
+      line-height: 1.15;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+    p { margin: 0; }
+    a { color: inherit; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    .container { width: min(1120px, 100% - 40px); margin-inline: auto; }
+
+    /* ---------- Animated background ---------- */
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+      background:
+        radial-gradient(1200px 600px at 50% -10%, #e4eeff 0%, transparent 70%),
+        var(--bg);
+    }
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.55;
+      animation: drift 22s ease-in-out infinite alternate;
+    }
+    .blob.b1 { width: 520px; height: 520px; background: #bcd3ff; top: -120px; left: -140px; }
+    .blob.b2 { width: 460px; height: 460px; background: #b6ecfb; top: 30%; right: -160px; animation-duration: 26s; animation-delay: -6s; }
+    .blob.b3 { width: 420px; height: 420px; background: #cfd8ff; bottom: -160px; left: 25%; animation-duration: 30s; animation-delay: -12s; }
+    @keyframes drift {
+      0%   { transform: translate(0, 0) scale(1); }
+      50%  { transform: translate(60px, 40px) scale(1.08); }
+      100% { transform: translate(-40px, 80px) scale(0.95); }
+    }
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(47, 107, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(47, 107, 255, 0.05) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse at 50% 20%, #000 0%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 20%, #000 0%, transparent 70%);
+    }
+
+    /* ---------- Nav ---------- */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease), backdrop-filter 0.4s;
+    }
+    .nav.scrolled {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 var(--line);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 15px;
+      letter-spacing: 0.02em;
+    }
+    .brand img { width: 42px; height: auto; }
+    .brand small { display: block; font-weight: 500; font-size: 10px; letter-spacing: 0.32em; color: var(--navy-soft); }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      border: 0;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.3s;
+      white-space: nowrap;
+    }
+    .btn svg { width: 18px; height: 18px; flex: none; transition: transform 0.35s var(--ease); }
+    .btn-primary {
+      color: #fff;
+      background: var(--grad);
+      background-size: 160% 100%;
+      box-shadow: 0 10px 30px -10px rgba(47, 107, 255, 0.7);
+    }
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.45) 50%, transparent 70%);
+      transform: translateX(-120%);
+      animation: shine 4.5s ease-in-out infinite;
+    }
+    @keyframes shine {
+      0%, 60% { transform: translateX(-120%); }
+      100% { transform: translateX(120%); }
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -12px rgba(47, 107, 255, 0.8); background-position: 100% 0; }
+    .btn-primary:hover svg { transform: translateX(4px); }
+    .btn-ghost {
+      color: var(--navy);
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: inset 0 0 0 1.5px var(--line), var(--shadow-sm);
+    }
+    .btn-ghost:hover { transform: translateY(-3px); box-shadow: inset 0 0 0 1.5px #c9d7f7, var(--shadow-md); }
+    .btn-sm { padding: 10px 18px; font-size: 14px; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      padding: 40px 0 110px;
+      text-align: center;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: inset 0 0 0 1px var(--line), var(--shadow-sm);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--royal);
+    }
+    .pulse {
+      position: relative;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+    .pulse::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--blue);
+      animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+    @keyframes ping { 75%, 100% { transform: scale(2.6); opacity: 0; } }
+
+    .hero-logo-wrap {
+      position: relative;
+      width: min(440px, 82vw);
+      margin: 34px auto 30px;
+    }
+    .hero-logo-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 8% 10% 30%;
+      background: radial-gradient(circle, rgba(31, 184, 245, 0.35), rgba(47, 79, 216, 0.15) 50%, transparent 70%);
+      filter: blur(30px);
+      animation: glow 6s ease-in-out infinite;
+      z-index: -1;
+    }
+    @keyframes glow {
+      0%, 100% { opacity: 0.7; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.12); }
+    }
+    .hero-logo {
+      animation: float 7s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 5.6vw, 62px);
+      font-weight: 800;
+      max-width: 16ch;
+      margin: 0 auto;
+    }
+    .grad-text {
+      background: var(--grad);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: grad-shift 6s ease-in-out infinite alternate;
+    }
+    @keyframes grad-shift { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+    .hero .lead {
+      max-width: 640px;
+      margin: 22px auto 36px;
+      font-size: clamp(17px, 2vw, 19.5px);
+      color: var(--muted);
+    }
+    .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    .scroll-cue {
+      margin: 64px auto 0;
+      width: 26px;
+      height: 42px;
+      border-radius: 14px;
+      box-shadow: inset 0 0 0 2px #c4d3f5;
+      position: relative;
+    }
+    .scroll-cue::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 8px;
+      width: 4px;
+      height: 8px;
+      margin-left: -2px;
+      border-radius: 2px;
+      background: var(--blue);
+      animation: wheel 1.8s ease-in-out infinite;
+    }
+    @keyframes wheel {
+      0% { opacity: 0; transform: translateY(0); }
+      30% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(14px); }
+    }
+
+    /* ---------- Sections ---------- */
+    section { position: relative; }
+    .section { padding: 100px 0; }
+    .eyebrow {
+      display: inline-block;
+      font-family: "Montserrat", sans-serif;
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 16px;
+    }
+    .section-head { max-width: 680px; margin-bottom: 56px; }
+    .section-head.center { margin-inline: auto; text-align: center; }
+    .section-head h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 700; }
+    .section-head p { margin-top: 18px; color: var(--muted); font-size: 18px; }
+
+    /* Vision */
+    .vision-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .vision-grid > *, .note-grid > * { min-width: 0; }
+    .vision-copy p + p { margin-top: 18px; }
+    .vision-copy p { color: var(--muted); font-size: 18px; }
+    .vision-copy strong { color: var(--navy); font-weight: 600; }
+
+    .browser {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg), inset 0 0 0 1px var(--line);
+      overflow: hidden;
+      transform: perspective(1200px) rotateY(-8deg) rotateX(4deg);
+      transition: transform 0.8s var(--ease);
+    }
+    .browser:hover { transform: perspective(1200px) rotateY(0) rotateX(0); }
+    .browser-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 16px;
+      background: #f3f7ff;
+      border-bottom: 1px solid var(--line);
+    }
+    .dot { width: 11px; height: 11px; border-radius: 50%; background: #d6e0f5; }
+    .url {
+      flex: 1;
+      margin-left: 10px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: #fff;
+      box-shadow: inset 0 0 0 1px var(--line);
+      font-size: 13.5px;
+      color: var(--navy-soft);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .url svg { width: 13px; height: 13px; color: var(--blue); flex: none; }
+    .typed::after {
+      content: "";
+      display: inline-block;
+      width: 1.5px;
+      height: 1em;
+      margin-left: 2px;
+      vertical-align: -2px;
+      background: var(--blue);
+      animation: caret 1s steps(1) infinite;
+    }
+    @keyframes caret { 50% { opacity: 0; } }
+    .browser-body { padding: 34px 30px 38px; display: grid; gap: 16px; }
+    .sk {
+      height: 12px;
+      border-radius: 6px;
+      background: linear-gradient(90deg, #edf2fd 0%, #dde7fb 50%, #edf2fd 100%);
+      background-size: 200% 100%;
+      animation: shimmer 2.2s linear infinite;
+    }
+    @keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+    .sk.title { height: 22px; width: 62%; }
+    .sk.w90 { width: 90%; } .sk.w75 { width: 75%; } .sk.w55 { width: 55%; }
+    .sk-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 10px; }
+    .sk-card { height: 74px; border-radius: 14px; background: var(--tint); position: relative; overflow: hidden; }
+    .sk-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+      transform: translateX(-100%);
+      animation: sweep 2.8s ease-in-out infinite;
+    }
+    .sk-card:nth-child(2)::after { animation-delay: 0.3s; }
+    .sk-card:nth-child(3)::after { animation-delay: 0.6s; }
+    @keyframes sweep { 60%, 100% { transform: translateX(100%); } }
+    .soon-tag {
+      justify-self: start;
+      margin-top: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--tint);
+      color: var(--royal);
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    /* Principles */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .card {
+      position: relative;
+      padding: 34px 30px 32px;
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: inset 0 0 0 1px var(--line), var(--shadow-sm);
+      transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+      overflow: hidden;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      height: 3px;
+      background: var(--grad);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.6s var(--ease);
+    }
+    .card:hover { transform: translateY(-8px); box-shadow: inset 0 0 0 1px #d3def8, var(--shadow-md); }
+    .card:hover::before { transform: scaleX(1); }
+    .icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(140deg, #e8efff, #dff6fd);
+      color: var(--blue);
+      margin-bottom: 22px;
+      transition: transform 0.5s var(--ease);
+    }
+    .card:hover .icon { transform: rotate(-8deg) scale(1.08); }
+    .icon svg { width: 26px; height: 26px; }
+    .card h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+    .card p { color: var(--muted); font-size: 16px; }
+
+    /* Honest note */
+    .note {
+      position: relative;
+      border-radius: 32px;
+      padding: clamp(36px, 6vw, 72px);
+      background: var(--surface);
+      box-shadow: var(--shadow-md), inset 0 0 0 1px var(--line);
+      overflow: hidden;
+    }
+    .note::before {
+      content: "";
+      position: absolute;
+      width: 380px; height: 380px;
+      right: -120px; top: -140px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(19, 214, 247, 0.18), transparent 70%);
+    }
+    .note-grid { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .note h2 { font-size: clamp(26px, 3.6vw, 38px); font-weight: 700; }
+    .note p { color: var(--muted); font-size: 18px; margin-top: 18px; }
+    .note .sig { margin-top: 26px; font-family: "Montserrat", sans-serif; font-weight: 600; color: var(--navy); }
+    .note .sig span { display: block; font-family: "DM Sans", sans-serif; font-weight: 400; font-size: 14.5px; color: var(--muted); }
+
+    .journey { list-style: none; margin: 0; padding: 0; position: relative; }
+    .journey::before {
+      content: "";
+      position: absolute;
+      left: 19px; top: 20px; bottom: 20px;
+      width: 2px;
+      background: var(--line);
+    }
+    .journey::after {
+      content: "";
+      position: absolute;
+      left: 19px; top: 20px;
+      width: 2px;
+      height: 0;
+      background: var(--grad);
+      transition: height 1.6s var(--ease) 0.3s;
+    }
+    .journey.in::after { height: calc(33% - 10px); }
+    .journey li { position: relative; display: flex; gap: 20px; padding: 14px 0; }
+    .step {
+      position: relative;
+      z-index: 1;
+      flex: none;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      background: #fff;
+      box-shadow: inset 0 0 0 2px var(--line);
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--navy-soft);
+    }
+    .journey li.done .step { background: var(--grad); color: #fff; box-shadow: 0 6px 16px -6px rgba(47,107,255,0.7); }
+    .journey li.current .step { background: #fff; color: var(--blue); box-shadow: inset 0 0 0 2px var(--blue); }
+    .journey li.current .step::after {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid var(--blue);
+      opacity: 0;
+      animation: ring 2.2s ease-out infinite;
+    }
+    @keyframes ring { 0% { transform: scale(0.8); opacity: 0.6; } 100% { transform: scale(1.4); opacity: 0; } }
+    .journey h3 { font-size: 17px; font-weight: 700; margin-top: 2px; }
+    .journey p { font-size: 15.5px; margin-top: 4px; color: var(--muted); }
+    .journey li.current h3 { color: var(--blue); }
+
+    /* CTA */
+    .cta {
+      position: relative;
+      text-align: center;
+      border-radius: 36px;
+      padding: clamp(56px, 8vw, 96px) clamp(24px, 6vw, 72px);
+      background: linear-gradient(135deg, #2441c9 0%, #2f6bff 50%, #17b8ef 100%);
+      background-size: 200% 200%;
+      animation: grad-move 14s ease infinite;
+      color: #fff;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    @keyframes grad-move {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    .cta .ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      animation: spin 40s linear infinite;
+    }
+    .cta .ring.r1 { width: 520px; height: 520px; left: -200px; top: -240px; border-style: dashed; }
+    .cta .ring.r2 { width: 380px; height: 380px; right: -120px; bottom: -180px; animation-direction: reverse; animation-duration: 30s; }
+    .cta .ring.r3 { width: 180px; height: 180px; right: 12%; top: -60px; background: rgba(255,255,255,0.06); border: 0; animation: float 9s ease-in-out infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .cta-inner { position: relative; max-width: 700px; margin: 0 auto; }
+    .cta .eyebrow { color: #c9f3ff; }
+    .cta h2 { color: #fff; font-size: clamp(30px, 4.6vw, 50px); font-weight: 800; }
+    .cta p { margin: 20px auto 0; color: rgba(255, 255, 255, 0.88); font-size: 18.5px; max-width: 580px; }
+    .email-row {
+      margin-top: 38px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-white {
+      color: var(--royal);
+      background: #fff;
+      box-shadow: 0 14px 34px -12px rgba(8, 20, 80, 0.55);
+    }
+    .btn-white:hover { transform: translateY(-3px); box-shadow: 0 20px 44px -12px rgba(8, 20, 80, 0.65); }
+    .btn-white:hover svg { transform: translateX(4px); }
+    .btn-outline-white {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.45);
+    }
+    .btn-outline-white:hover { background: rgba(255, 255, 255, 0.18); transform: translateY(-3px); }
+    .email-big {
+      display: inline-block;
+      margin-top: 30px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: clamp(20px, 3.4vw, 32px);
+      color: #fff;
+      text-decoration: none;
+      position: relative;
+      word-break: break-all;
+    }
+    .email-big::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -4px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.6);
+      transform: scaleX(0.3);
+      transition: transform 0.5s var(--ease);
+    }
+    .email-big:hover::after { transform: scaleX(1); }
+
+    /* Footer */
+    footer { padding: 56px 0 44px; }
+    .foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding-top: 32px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14.5px;
+    }
+    .foot a { color: var(--royal); text-decoration: none; font-weight: 500; }
+    .foot a:hover { text-decoration: underline; }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      transform: translate(-50%, 30px);
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: var(--navy);
+      color: #fff;
+      font-size: 14.5px;
+      font-weight: 500;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+      z-index: 100;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .toast svg { width: 16px; height: 16px; color: var(--cyan); }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    /* ---------- Reveal animations ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(34px);
+      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+      transition-delay: var(--d, 0s);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal.from-left { transform: translateX(-40px); }
+    .reveal.from-right { transform: translateX(40px); }
+    .reveal.zoom { transform: scale(0.92); }
+    .reveal.from-left.in, .reveal.from-right.in, .reveal.zoom.in { transform: none; }
+
+    /* Hero load-in */
+    .load { opacity: 0; transform: translateY(24px); animation: load-in 1s var(--ease) forwards; animation-delay: var(--d, 0s); }
+    @keyframes load-in { to { opacity: 1; transform: none; } }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .vision-grid, .note-grid { grid-template-columns: 1fr; gap: 48px; }
+      .cards { grid-template-columns: 1fr; }
+      .browser { transform: none; }
+      .section { padding: 76px 0; }
+    }
+    @media (max-width: 560px) {
+      body { font-size: 16px; }
+      .container { width: calc(100% - 32px); }
+      .brand-text { display: none; }
+      .hero { padding-bottom: 80px; }
+      .hero-actions .btn, .email-row .btn { width: 100%; justify-content: center; }
+      .sk-cards { grid-template-columns: repeat(2, 1fr); }
+      .sk-cards .sk-card:nth-child(3) { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal, .load { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg" aria-hidden="true">
+    <div class="grid-overlay"></div>
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <!-- Nav -->
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="brand" aria-label="Alec Davis Foundation home">
+        <img src="assets/logo-mark.png" alt="" width="42" height="27" />
+        <span class="brand-text">ALEC DAVIS<small>FOUNDATION</small></span>
+      </a>
+      <a href="mailto:alec@alecdavis.com?subject=Supporting%20the%20Alec%20Davis%20Foundation" class="btn btn-primary btn-sm">
+        Get in touch
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <span class="pill load" style="--d:0.05s"><span class="pulse"></span>Coming soon to alecdavis.org</span>
+
+        <div class="hero-logo-wrap load" style="--d:0.15s">
+          <img class="hero-logo" src="assets/logo-full.png" alt="Alec Davis Foundation logo" width="1000" height="780" />
+        </div>
+
+        <h1 class="load" style="--d:0.3s">A foundation <span class="grad-text">in the making.</span></h1>
+        <p class="lead load" style="--d:0.45s">
+          The Alec Davis Foundation is a private foundation I intend to build, one that will give
+          generously and last for generations. The vision is clear. What it needs now is the
+          right founding partners.
+        </p>
+        <div class="hero-actions load" style="--d:0.6s">
+          <a href="mailto:alec@alecdavis.com?subject=Supporting%20the%20Alec%20Davis%20Foundation" class="btn btn-primary">
+            Become a founding partner
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#vision" class="btn btn-ghost">Read the vision</a>
+        </div>
+
+        <div class="scroll-cue load" style="--d:0.9s" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- Vision -->
+    <section class="section" id="vision">
+      <div class="container vision-grid">
+        <div class="vision-copy">
+          <span class="eyebrow reveal">The vision</span>
+          <h2 class="reveal" style="--d:0.08s; font-size: clamp(28px, 4vw, 44px); font-weight: 700; margin-bottom: 26px;">
+            A permanent home for giving, at <span class="grad-text">alecdavis.org</span>
+          </h2>
+          <p class="reveal" style="--d:0.16s">
+            One day, <strong>alecdavis.org</strong> will be the home of a fully established private
+            foundation, with an endowment that funds meaningful work year after year and a team
+            that puts it to good use.
+          </p>
+          <p class="reveal" style="--d:0.24s">
+            This page is the first step. It's a public promise that the foundation is coming, and
+            an open invitation to the people who can help it arrive sooner.
+          </p>
+        </div>
+
+        <div class="browser reveal from-right" style="--d:0.2s" aria-hidden="true">
+          <div class="browser-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <div class="url">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              <span class="typed" id="typed"></span>
+            </div>
+          </div>
+          <div class="browser-body">
+            <div class="sk title"></div>
+            <div class="sk w90"></div>
+            <div class="sk w75"></div>
+            <div class="sk w55"></div>
+            <div class="sk-cards">
+              <div class="sk-card"></div><div class="sk-card"></div><div class="sk-card"></div>
+            </div>
+            <span class="soon-tag">Under construction</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Principles -->
+    <section class="section" style="padding-top: 20px;">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow reveal">What it will stand for</span>
+          <h2 class="reveal" style="--d:0.08s">Built on three simple principles</h2>
+        </div>
+        <div class="cards">
+          <article class="card reveal" style="--d:0.05s">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
+            </div>
+            <h3>Built to last</h3>
+            <p>An endowed foundation meant to keep giving for decades, not a single campaign that ends when the money runs out.</p>
+          </article>
+          <article class="card reveal" style="--d:0.15s">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+            </div>
+            <h3>Giving with purpose</h3>
+            <p>Every dollar directed carefully toward people and causes where it can make a real, measurable difference.</p>
+          </article>
+          <article class="card reveal" style="--d:0.25s">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/></svg>
+            </div>
+            <h3>Open and accountable</h3>
+            <p>Founding partners will always know where their support goes and what it achieved. No surprises.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Honest note -->
+    <section class="section">
+      <div class="container">
+        <div class="note reveal zoom">
+          <div class="note-grid">
+            <div>
+              <span class="eyebrow">An honest note</span>
+              <h2>The dream is ready. The funding isn't, yet.</h2>
+              <p>
+                I'll be straightforward: right now I don't have the resources to establish and endow
+                a private foundation on my own. I'm not willing to let the idea wait until I do.
+              </p>
+              <p>
+                If you're a philanthropist or someone in a position to give, and this vision speaks to
+                you, I'd be grateful to hear from you. A conversation is the best place to start.
+              </p>
+              <p class="sig">Alec Davis<span>Founder, Alec Davis Foundation</span></p>
+            </div>
+
+            <ol class="journey" id="journey">
+              <li class="done">
+                <span class="step">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+                </span>
+                <div>
+                  <h3>The vision</h3>
+                  <p>A name, an identity, and a clear idea of what the foundation should be.</p>
+                </div>
+              </li>
+              <li class="current">
+                <span class="step">2</span>
+                <div>
+                  <h3>Founding partners</h3>
+                  <p>Finding the people who want to help make it real. <strong>We are here.</strong></p>
+                </div>
+              </li>
+              <li>
+                <span class="step">3</span>
+                <div>
+                  <h3>Establish &amp; endow</h3>
+                  <p>Formally create the foundation and build its endowment.</p>
+                </div>
+              </li>
+              <li>
+                <span class="step">4</span>
+                <div>
+                  <h3>Launch on alecdavis.org</h3>
+                  <p>Open the doors and start giving.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" id="contact" style="padding-top: 20px;">
+      <div class="container">
+        <div class="cta reveal zoom">
+          <span class="ring r1" aria-hidden="true"></span>
+          <span class="ring r2" aria-hidden="true"></span>
+          <span class="ring r3" aria-hidden="true"></span>
+          <div class="cta-inner">
+            <span class="eyebrow">Help build it</span>
+            <h2>Want to help make this dream real?</h2>
+            <p>
+              If you're a philanthropist interested in becoming a founding partner of the Alec Davis
+              Foundation, please reach out. I read and reply to every message personally.
+            </p>
+            <a class="email-big" href="mailto:alec@alecdavis.com?subject=Supporting%20the%20Alec%20Davis%20Foundation">alec@alecdavis.com</a>
+            <div class="email-row">
+              <a href="mailto:alec@alecdavis.com?subject=Supporting%20the%20Alec%20Davis%20Foundation" class="btn btn-white">
+                Send an email
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <button type="button" class="btn btn-outline-white" id="copyBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+                Copy address
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <a href="#top" class="brand" aria-label="Back to top">
+        <img src="assets/logo-mark.png" alt="" width="42" height="27" />
+        <span>ALEC DAVIS<small>FOUNDATION</small></span>
+      </a>
+      <span>&copy; <span id="year">2026</span> Alec Davis Foundation &middot; Coming soon to alecdavis.org</span>
+      <a href="mailto:alec@alecdavis.com">alec@alecdavis.com</a>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+    <span>Email address copied</span>
+  </div>
+
+  <script>
+    (function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Nav background on scroll
+      var nav = document.getElementById('nav');
+      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 10); }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // Scroll reveal
+      var targets = document.querySelectorAll('.reveal, #journey');
+      if ('IntersectionObserver' in window && !reduce) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        targets.forEach(function (el) { io.observe(el); });
+      } else {
+        targets.forEach(function (el) { el.classList.add('in'); });
+      }
+
+      // Typing effect in the mock browser
+      var typed = document.getElementById('typed');
+      var text = 'alecdavis.org';
+      if (reduce) { typed.textContent = text; }
+      else {
+        var i = 0, deleting = false;
+        (function tick() {
+          typed.textContent = text.slice(0, i);
+          if (!deleting && i < text.length) { i++; setTimeout(tick, 110); }
+          else if (!deleting) { deleting = true; setTimeout(tick, 2600); }
+          else if (i > 0) { i--; setTimeout(tick, 45); }
+          else { deleting = false; setTimeout(tick, 500); }
+        })();
+      }
+
+      // Copy email
+      var toast = document.getElementById('toast');
+      var timer;
+      document.getElementById('copyBtn').addEventListener('click', function () {
+        var email = 'alec@alecdavis.com';
+        function done() {
+          toast.classList.add('show');
+          clearTimeout(timer);
+          timer = setTimeout(function () { toast.classList.remove('show'); }, 2200);
+        }
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(email).then(done, fallback);
+        } else { fallback(); }
+        function fallback() {
+          var t = document.createElement('textarea');
+          t.value = email; t.setAttribute('readonly', '');
+          t.style.position = 'absolute'; t.style.left = '-9999px';
+          document.body.appendChild(t); t.select();
+          try { document.execCommand('copy'); done(); } catch (err) {}
+          document.body.removeChild(t);
+        }
+      });
+
+      // Subtle parallax on background blobs
+      if (!reduce && window.matchMedia('(pointer: fine)').matches) {
+        var blobs = document.querySelectorAll('.blob');
+        window.addEventListener('mousemove', function (e) {
+          var x = (e.clientX / window.innerWidth - 0.5);
+          var y = (e.clientY / window.innerHeight - 0.5);
+          blobs.forEach(function (b, idx) {
+            var f = (idx + 1) * 14;
+            b.style.translate = (x * f) + 'px ' + (y * f) + 'px';
+          });
+        }, { passive: true });
+      }
+    })();
+  </script>
+</body>
+</html>
